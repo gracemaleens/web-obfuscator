@@ -17,6 +17,10 @@ The binary will be output in the dist directory
 Enter in the terminal
 ```
 web-obfuscator-[Your platform] [Path of your web project]
+
+// e.g.
+// windows
+web-obfuscator-win.exe path\to\web-project
 ```
 Or specify the obfuscation level
 ```
