@@ -1,5 +1,7 @@
 # web-obfuscator
 
+A CLI web obfuscation tool that supports obfuscation of js, html, css files
+
 ## Install
 Clone the repository locally and use the npm installation package
 ```
