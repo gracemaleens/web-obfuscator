@@ -1,0 +1,41 @@
+{
+  "name": "web-obfuscator",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "wo": "./bin/cli.js"
+  },
+  "main": "./src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf dist",
+    "build": "pkg .",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "pkg": {
+    "assets": [
+      "config/**/*",
+      "src/worker.js"
+    ],
+    "scripts": "src/**/*.js",
+    "targets": [
+      "node16-linux-x64",
+      "node16-macos-x64",
+      "node16-win-x64"
+    ],
+    "outputPath": "dist"
+  },
+  "author": "grace",
+  "license": "ISC",
+  "dependencies": {
+    "clean-css": "^5.3.3",
+    "commander": "^12.1.0",
+    "glob-promise": "^6.0.7",
+    "javascript-obfuscator": "^4.1.1",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1",
+    "rimraf": "^6.0.1"
+  }
+}

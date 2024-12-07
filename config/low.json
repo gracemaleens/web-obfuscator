@@ -1,0 +1,14 @@
+{
+    "controlFlowFlattening": true,
+    "controlFlowFlatteningThreshold": 0.1,
+    "deadCodeInjection": true,
+    "deadCodeInjectionThreshold": 0.1,
+    "numbersToExpressions": true,
+    "splitStrings": true,
+    "stringArrayCallsTransform": false,
+    "stringArrayEncoding": [],
+    "stringArrayWrappersCount": 1,
+    "stringArrayWrappersParametersMaxCount": 2,
+    "stringArrayWrappersType": "variable",
+    "stringArrayThreshold": 0.1
+}
