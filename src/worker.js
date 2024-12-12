@@ -100,12 +100,14 @@ class WebObfuscator {
                 && !/.*jquery.*\.js/.test(file)),
             css: this.#allFiles.filter(file => file.endsWith('.css')),
             html: this.#allFiles.filter(file => file.endsWith('.html')),
+            json: this.#allFiles.filter(file => file.endsWith('.json')),
             res: this.#allFiles.filter(file => /\.(png|jpg|jpeg|gif|svg|webp|mp3|mp4|webm)$/.test(file))
         }
 
         this.#undisposedFiles = this.#allFiles.filter(file => !this.#obfuscableFiles.js.includes(file)
             && !this.#obfuscableFiles.css.includes(file)
             && !this.#obfuscableFiles.html.includes(file)
+            && !this.#obfuscableFiles.json.includes(file)
             && !this.#obfuscableFiles.res.includes(file))
     }
 
@@ -122,8 +124,9 @@ class WebObfuscator {
             type === 'js' ? this.#obfuscateJs
                 : type === 'css' ? this.#obfuscateCss
                     : type === 'html' ? this.#obfuscateHtml
-                        : type === 'res' ? this.#obfuscateRes
-                            : (() => { throw new Error(`Unknown obfuscate type: ${type}`) })()
+                        : type === 'json' ? this.#obfuscateJson
+                            : type === 'res' ? this.#obfuscateRes
+                                : (() => { throw new Error(`Unknown obfuscate type: ${type}`) })()
         ).bind(this)
 
         for (const file of files) {
@@ -170,6 +173,10 @@ class WebObfuscator {
             .join('')
 
         return `<script>document.write(unescape('${obfuscatedContent}'))</script>`
+    }
+
+    async #obfuscateJson(content) {
+        return JSON.stringify(JSON.parse(content))
     }
 
     async #obfuscateRes(content, level) {
