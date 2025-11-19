@@ -176,6 +176,7 @@ class WebObfuscator {
     }
 
     async #obfuscateJson(content) {
+        // 移除空白字符
         return JSON.stringify(JSON.parse(content))
     }
 
@@ -185,14 +186,14 @@ class WebObfuscator {
     }
 
     async #copyUndisposedFiles(source, output) {
-        this.#undisposedFiles.forEach(file => {
+        this.#undisposedFiles.forEach(async file => {
             this.#progress(this.#calculateProgress(), `Copying ${file}`)
 
             try {
                 const sourcePath = join(source, file)
                 const outputPath = join(output, file)
 
-                fs.mkdir(path.dirname(outputPath), { recursive: true })
+                await fs.mkdir(path.dirname(outputPath), { recursive: true })
                 fs.copyFile(sourcePath, outputPath)
 
                 this.#successCount++

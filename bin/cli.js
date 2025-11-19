@@ -27,7 +27,7 @@ program
     .name('wo')
     .description('A CLI for obfuscate web project')
     .argument('<input>', 'a web project path')
-    .addOption(new Option('-l, --level <level>', 'obfuscate level', 'high').choices(['low', 'normal', 'high']).default('normal'))
+    .addOption(new Option('-l, --level <level>', 'obfuscate level', 'high').choices(['low', 'normal', 'high']).default('low'))
     .option('-o, --output <output>', 'output path')
     .action((input, options, command) => {
         obfuscate(input, options.level, options.output)
