@@ -20,6 +20,7 @@
 const ora = require('ora')
 const { pathResolver } = require('./path-resolver.js')
 const { Worker } = require('worker_threads')
+const { exit } = require('process')
 
 function obfuscate(source, level, output) {
     const spinner = ora('Preparing...').start()
@@ -42,6 +43,7 @@ function obfuscate(source, level, output) {
                 spinner.fail(`Failed to ${args.name}: ${args.error}`)
 
                 finishWorker()
+                exit(1)
                 break
             default:
                 spinner.fail(`Unsupported message: ${name}`)
